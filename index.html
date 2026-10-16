@@ -112,20 +112,27 @@
   .nav-links a.nav-ext:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
   .nav-links a.nav-ext .arr { font-style: normal; font-size: 12px; margin-left: 3px; }
 
-  /* 顶栏中央标语：占据品牌与右侧入口之间的留白，居中显示 */
+  /* 顶栏中央标语：两端渐隐细线 + 整句品牌渐变字 */
   .nav-tagline {
     flex: 1; min-width: 0;
-    text-align: center;
-    font-size: 13.5px; font-weight: 600;
-    letter-spacing: 0.14em;
-    color: var(--muted);
+    display: flex; align-items: center; justify-content: center;
+    gap: 16px;
+    font-size: 15.5px; font-weight: 800; letter-spacing: 0.24em;
     white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis;
+    overflow: hidden;
   }
-  /* 标语里的「AI」用品牌渐变色点一下，和左上角字标呼应 */
-  .nav-tagline em {
-    font-style: normal; font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+  /* 两侧细线：向外渐隐，把中段横向"撑住"，不再孤零零浮在中间 */
+  .nav-tagline::before,
+  .nav-tagline::after {
+    content: ""; height: 1px; flex: 1; flex-basis: 0; max-width: 132px;
+  }
+  .nav-tagline::before { background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--fg) 24%, transparent)); }
+  .nav-tagline::after  { background: linear-gradient(90deg, color-mix(in srgb, var(--fg) 24%, transparent), transparent); }
+  /* 整句走品牌渐变（蓝 → 紫 → 暖橙）。末尾那一格字距留白用负 margin 抵消，
+     否则渐变会多出一段空档、视觉重心也会偏左 */
+  .nav-tagline > b {
+    font-weight: 800; margin-right: -0.18em;
+    background: linear-gradient(100deg, var(--accent) 0%, var(--accent-alt) 62%, #ff8a4c 120%);
     -webkit-background-clip: text; background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -844,7 +851,7 @@
 <header data-od-id="topnav">
   <div class="wrap nav">
     <a class="brand" href="#top">牛依豪</a>
-    <span class="nav-tagline">让<em>AI</em>点缀生活</span>
+    <span class="nav-tagline"><b>让AI点缀生活</b></span>
     <nav class="nav-links">
       <div class="ct-mod" id="contactMod">
         <button class="ct-trigger" id="contactBtn" type="button" aria-expanded="false" aria-controls="contactPop">联系我<span class="caret">▼</span></button>
