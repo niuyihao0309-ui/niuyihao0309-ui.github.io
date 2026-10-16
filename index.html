@@ -112,6 +112,24 @@
   .nav-links a.nav-ext:hover { background: color-mix(in srgb, var(--accent) 10%, transparent); }
   .nav-links a.nav-ext .arr { font-style: normal; font-size: 12px; margin-left: 3px; }
 
+  /* 顶栏中央标语：占据品牌与右侧入口之间的留白，居中显示 */
+  .nav-tagline {
+    flex: 1; min-width: 0;
+    text-align: center;
+    font-size: 13.5px; font-weight: 600;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+  /* 标语里的「AI」用品牌渐变色点一下，和左上角字标呼应 */
+  .nav-tagline em {
+    font-style: normal; font-weight: 800;
+    background: linear-gradient(135deg, var(--accent), var(--accent-alt));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
   /* ---------- 顶栏「联系我」模块（悬停/点击展开联系卡片） ---------- */
   .ct-mod { position: relative; }
   .ct-mod .ct-trigger {
@@ -679,6 +697,8 @@
     .hero h1 { font-size: 38px; }
     /* 顶栏：小屏收窄间距，保证 品牌 + 联系我 + GitHub 仍能一行放下 */
     .nav { gap: 8px; }
+    /* 小屏位置不够，标语先让位 */
+    .nav-tagline { display: none; }
     .nav-links { gap: 2px; }
     .nav-links a { padding: 6px 8px; font-size: 13.5px; }
     .ct-mod .ct-trigger { padding: 6px 11px; font-size: 13.5px; gap: 5px; }
@@ -824,6 +844,7 @@
 <header data-od-id="topnav">
   <div class="wrap nav">
     <a class="brand" href="#top">牛依豪</a>
+    <span class="nav-tagline">让<em>AI</em>点缀生活</span>
     <nav class="nav-links">
       <div class="ct-mod" id="contactMod">
         <button class="ct-trigger" id="contactBtn" type="button" aria-expanded="false" aria-controls="contactPop">联系我<span class="caret">▼</span></button>
