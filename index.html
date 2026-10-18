@@ -314,11 +314,25 @@
     font-size: 15px;
     line-height: 1.85;
   }
+  /* 首屏资质胶囊：贴在简介下方，靠细边框读作标签而非正文 */
+  .hero .hero-cert {
+    margin-top: 16px;
+    display: flex; justify-content: center;
+  }
+  .hero .hero-cert span {
+    display: inline-block;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--muted);
+    border: 0.5px solid rgba(46, 38, 26, 0.16);
+    border-radius: 999px;
+    padding: 4px 12px;
+  }
   .hero .stats {
     display: flex; justify-content: center;
     gap: clamp(30px, 7.5vw, 112px);
     row-gap: 30px;
-    margin-top: clamp(44px, 8vh, 72px); flex-wrap: wrap;
+    margin-top: clamp(26px, 4vh, 34px); flex-wrap: wrap;
   }
   .stat { text-align: center; }
   .stat .num {
@@ -346,6 +360,23 @@
     font-size: 13px; color: var(--muted);
   }
   .side-meta b { color: var(--fg); font-weight: 700; font-family: Consolas, ui-monospace, monospace; }
+
+  /* 左栏落地结果：竖排数字，数字走项目色；靠一条同色细线跟上面的索引区切开 */
+  .side-ach {
+    margin-top: 20px;
+    border-top: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  }
+  .side-ach div {
+    display: flex; align-items: baseline; gap: 7px;
+    padding: 9px 0;
+  }
+  .side-ach div + div { border-top: 1px solid var(--border); }
+  .side-ach b {
+    font-size: 16px; font-weight: 800; letter-spacing: -0.01em;
+    color: var(--accent); white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .side-ach span { font-size: 12px; color: var(--muted); line-height: 1.5; }
 
   .entry {
     margin-top: 22px;
@@ -697,6 +728,12 @@
   @media (max-width: 900px) {
     .proj-grid { grid-template-columns: 1fr; }
     .proj-side { position: static; }
+    /* 单列时成果块转横排，避免把项目描述往下顶 */
+    .side-ach { display: flex; flex-wrap: wrap; align-items: baseline; }
+    .side-ach div { padding: 6px 16px 6px 0; }
+    .side-ach div + div {
+      border-top: 0; border-left: 1px solid var(--border); padding-left: 16px;
+    }
     .services { grid-template-columns: 1fr; }
   }
   @media (max-width: 680px) {
@@ -735,10 +772,11 @@
   /* ---- ① 未入场的静默态（截图/无脚本环境下由 js-anim 兜底摘除） ---- */
   .js-anim :where(
     .sec-head,
-    .hero h1, .hero .role, .hero .desc, .hero .stat,
+    .hero h1, .hero .role, .hero .desc, .hero .hero-cert, .hero .stat,
     .lead, .block h4, .chip, .module, .hl,
     .service, .pf-core, .pf-card, .pf-base,
-    .proj-side .side-label, .proj-side .side-desc, .proj-side .side-meta, .proj-side .entry,
+    .proj-side .side-label, .proj-side .side-desc, .proj-side .side-meta,
+    .proj-side .entry, .proj-side .side-ach,
     .lightbox .shot
   ):not(.rv-on) {
     opacity: 0;
@@ -747,7 +785,7 @@
   }
 
   /* ---- ② 起始姿态：左栏从左侧流入、卡片轻微放大、标题带「显影」模糊 ---- */
-  .js-anim :where(.proj-side .side-label, .proj-side .side-desc, .proj-side .side-meta, .proj-side .entry) {
+  .js-anim :where(.proj-side .side-label, .proj-side .side-desc, .proj-side .side-meta, .proj-side .entry, .proj-side .side-ach) {
     --rv-x: -26px; --rv-y: 0px;
   }
   .js-anim :where(.pf-core, .pf-card, .pf-base, .service) { --rv-y: 18px; --rv-s: .972; }
@@ -904,6 +942,7 @@
       <h1>牛依豪</h1>
       <p class="role">AI 应用开发 · 智能体应用开发 · FDE 前沿部署</p>
       <p class="desc">把大模型能力做进真实业务流程 —— 从 RAG 知识库、多 Agent 运营工作流，到 NL2SQL 智能取数与合同智能审查，五条业务线共用一套 LangGraph + FastAPI 技术底座。</p>
+      <div class="hero-cert"><span>影刀 RPA 高级认证</span></div>
       <div class="stats">
         <div class="stat"><div class="num">3</div><div class="label">年工作经验</div></div>
         <div class="stat"><div class="num">7</div><div class="label">个专家节点</div></div>
@@ -1012,6 +1051,11 @@
             <span class="entry-head">演示截图 · 问答对话<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">从文档批量入库到带出处的问答 —— 导入解析、向量入库、对话作答一屏看完。</span>
           </button>
+                  <div class="side-ach">
+            <div><b>200+</b><span>份文档入库</span></div>
+            <div><b>80%+</b><span>问答准确率</span></div>
+            <div><b>百余名</b><span>业务与经销人员使用</span></div>
+          </div>
         </aside>
         <div class="proj-main">
           <p class="lead">面向企业文档的<strong>私有化知识库问答系统</strong>：PDF / 图文资料批量入库，自然语言提问即可拿到带出处的答案，替代「翻文档 + 问老员工」的低效检索方式。</p>
@@ -1068,6 +1112,11 @@
             <span class="entry-head">演示截图 · 创意工作台<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">一键跑通「诊断 → 创意 → 质检 → 人工审核」的完整 Agent 流程，拿到 3~6 套主图方案。</span>
           </button>
+                  <div class="side-ach">
+            <div><b>3~6 套</b><span>一次生成主图方案</span></div>
+            <div><b>十几分钟</b><span>出图（原数小时）</span></div>
+            <div><b>数十家</b><span>商家在用</span></div>
+          </div>
         </aside>
         <div class="proj-main">
           <p class="lead">面向电商运营的<strong>一站式 AI 助手</strong>：把「商品诊断 → 创意生成 → 质量质检 → 人工审核 → 落库」编排成一条可恢复、可审计的 Agent 工作流，商家点一下即可拿到诊断结论与 3~6 套主图创意方案。</p>
@@ -1124,6 +1173,11 @@
           <div class="entry" data-url="http://82.157.59.218/">
             <div class="entry-head">体验入口 · 客服窗口<span class="pill">待接入</span></div>
             <p>一句话完成查订单、查物流、退款咨询 —— 体验懂业务、守边界的 AI 客服。</p>
+          </div>
+                  <div class="side-ach">
+            <div><b>数百次</b><span>日均会话量</span></div>
+            <div><b>七成</b><span>会话自助闭环</span></div>
+            <div><b>↓70%</b><span>人工转接量</span></div>
           </div>
         </aside>
         <div class="proj-main">
@@ -1182,6 +1236,11 @@
             <span class="entry-head">演示截图 · 取数对话<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">中文问一句经营指标，直接拿到结果表与图表 —— 不用写 SQL 的取数方式。<br>从提问、流式取数到结果表与图表，一屏看完。</span>
           </button>
+                  <div class="side-ach">
+            <div><b>分钟级</b><span>出数（原数个工作日）</span></div>
+            <div><b>100+</b><span>每月省下工时</span></div>
+            <div><b>80%+</b><span>一次问数正确率</span></div>
+          </div>
         </aside>
         <div class="proj-main">
           <p class="lead">面向企业内部的<strong>经营数据查询（NL2SQL）平台</strong>：把运营、商品、门店等角色的取数需求收进同一个入口 —— 用中文直接问经营指标、按地区 / 门店与时间维度看数、做多期趋势与占比对比，都能拿到结果表与图表，不用懂 SQL，也不必再走「提需求 → 等数据组排期出数」的老路。</p>
@@ -1239,6 +1298,11 @@
           <div class="entry" data-url="http://82.157.59.218:8080/">
             <div class="entry-head">体验入口 · 审查台<span class="pill">待接入</span></div>
             <p>丢一份合同进去，拿到风险清单与示范条款 —— 双引擎审查几分钟完成。</p>
+          </div>
+                  <div class="side-ach">
+            <div><b>十分钟</b><span>单份审查（原 1–2 小时）</span></div>
+            <div><b>90%+</b><span>高危条款召回</span></div>
+            <div><b>&lt;10%</b><span>标准合同误报率</span></div>
           </div>
         </aside>
         <div class="proj-main">
@@ -1578,11 +1642,11 @@
       /* 参与入场的元素（与 CSS 中第 ① 段选择器保持一致） */
       const TARGETS = [
         '.sec-head',
-        '.hero h1', '.hero .role', '.hero .desc', '.hero .stat',
+        '.hero h1', '.hero .role', '.hero .desc', '.hero .hero-cert', '.hero .stat',
         '.lead', '.block h4', '.chip', '.module', '.hl',
         '.service', '.pf-core', '.pf-card', '.pf-base',
         '.proj-side .side-label', '.proj-side .side-desc',
-        '.proj-side .side-meta', '.proj-side .entry'
+        '.proj-side .side-meta', '.proj-side .entry', '.proj-side .side-ach'
       ].join(',');
 
       /* 同一个容器里的错峰步长：文字条目密一点、卡片疏一点 */
@@ -1593,10 +1657,11 @@
 
       /* 延迟 = 同级兄弟中的序号 × 容器步长（最长封顶 520ms） */
       function delayOf(el) {
-        if (el.closest('.hero')) {                              /* 首屏：标题 → 身份 → 简介 → 数据 */
+        if (el.closest('.hero')) {                              /* 首屏：标题 → 身份 → 简介 → 资质 → 数据 */
           if (el.matches('h1')) return 0;
           if (el.classList.contains('role')) return 120;
           if (el.classList.contains('desc')) return 250;
+          if (el.classList.contains('hero-cert')) return 340;
           const i = [].indexOf.call(el.parentElement.children, el);
           return 380 + Math.max(i, 0) * 96;
         }
