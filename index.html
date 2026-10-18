@@ -604,7 +604,8 @@
     font-size: 12px; font-weight: 700; color: var(--fg);
     letter-spacing: 0.06em; white-space: nowrap;
   }
-  .pf-base-chips { display: flex; flex-wrap: wrap; gap: 7px; }
+  .pf-base-chips { display: flex; flex-direction: column; gap: 7px; }
+  .pf-base-row { display: flex; flex-wrap: wrap; gap: 7px; }
   .pf-base-chips span {
     font-family: Consolas, ui-monospace, monospace;
     font-size: 11.5px; color: var(--muted);
@@ -1023,9 +1024,15 @@
       <div class="pf-base">
         <span class="pf-base-label">统一技术底座</span>
         <div class="pf-base-chips">
-          <span>LangGraph</span><span>LangChain</span><span>FastAPI</span>
-          <span>Milvus / Qdrant</span><span>LLM 大模型</span><span>BGE-M3</span>
-          <span>SSE 流式推送</span><span>Docker Compose</span><span>Vue 3</span>
+          <div class="pf-base-row">
+            <span>LangGraph</span><span>LangChain</span><span>FastAPI</span>
+            <span>DeepSeek / Qwen</span><span>vLLM</span>
+            <span>Milvus / Qdrant</span><span>Elasticsearch</span><span>BGE-M3 / Reranker</span>
+          </div>
+          <div class="pf-base-row">
+            <span>MySQL / PostgreSQL</span><span>Redis</span><span>Celery</span><span>MinIO</span>
+            <span>SSE 流式推送</span><span>Docker Compose</span><span>Vue 3</span>
+          </div>
         </div>
       </div>
     </div>
