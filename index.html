@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" id="metaThemeColor" content="#fdfbf7">
+<meta name="color-scheme" content="light dark">
 <meta name="description" content="AI 应用项目导航（米白磨砂主题版）：华味坊麦浪智慧库（RAG 知识库）、智能运营助手（多 Agent 电商运营）、智能客服问答（任务型 AI 客服）、数据查询智能体（NL2SQL 智能取数）、智能合同审批（规则 + 大模型合同审查）。">
 <title>牛依豪个人作品集</title>
 <style>
@@ -11,21 +13,32 @@
     --bg: #fdfbf7;
     --bg-soft: #f6f3ec;
 
+    /* 玻璃面板的「基色三元组」：明暗主题只覆盖这几个 RGB，
+       下面所有 rgba(var(--xxx-rgb), a) 会自动跟着变，不用逐条改样式 */
+    --panel-rgb: 255, 255, 255;   /* 玻璃面板基色 */
+    --panel-solid: #ffffff;       /* 需要不透明底时用它 */
+    --header-rgb: 252, 250, 246;  /* 顶栏 / 侧栏 / 页脚的米白基色 */
+    --ink-rgb: 46, 38, 26;        /* 描边、浅阴影 */
+    --deep-rgb: 72, 58, 38;       /* 重阴影 */
+
     /* 玻璃面板 */
-    --surface: rgba(255, 255, 255, 0.70);
-    --surface-2: rgba(255, 255, 255, 0.54);
-    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    --surface: rgba(var(--panel-rgb), 0.70);
+    --surface-2: rgba(var(--panel-rgb), 0.54);
+    --glass-hi: inset 0 1px 0 rgba(var(--panel-rgb), 0.95);
 
     --fg: #1b1710;
     --fg-soft: #403a31;
     --muted: #6d6659;
-    --border: rgba(46, 38, 26, 0.10);
+    --border: rgba(var(--ink-rgb), 0.10);
 
     --accent: #0b6bf2;
     --accent-alt: #7c4dff;
 
-    --shadow-sm: 0 2px 8px rgba(46, 38, 26, 0.05);
-    --shadow: 0 22px 46px -30px rgba(72, 58, 38, 0.70);
+    --shadow-sm: 0 2px 8px rgba(var(--ink-rgb), 0.05);
+    --shadow: 0 22px 46px -30px rgba(var(--deep-rgb), 0.70);
+    /* 右下角悬浮按钮的投影（深色主题用纯黑，不能用 ink 白） */
+    --fab-shadow: 0 4px 12px rgba(46, 38, 26, 0.10);
+    --fab-shadow-hover: 0 6px 16px rgba(46, 38, 26, 0.16);
     --blur: blur(16px) saturate(140%);
 
     --max: 1120px;
@@ -36,6 +49,40 @@
     --xiaoer: #12a150;
     --shuju: #0d9488;
     --hetong: #7c3aed;
+  }
+
+  /* ---------- 深色主题 ----------
+     <html data-theme="dark"> 时生效。只重写颜色变量，
+     布局 / 圆角 / 动效一律不动，所以明暗两套皮肤共用一份样式表。
+     取值与作品集 v2 的暗色方案一致。 */
+  :root[data-theme="dark"] {
+    --bg: #12100d;
+    --bg-soft: #1a1712;
+    --panel-rgb: 38, 34, 28;
+    --panel-solid: #26221c;
+    --header-rgb: 19, 17, 13;
+    --ink-rgb: 255, 255, 255;
+    --deep-rgb: 0, 0, 0;
+    /* 深底上的内高光必须换成白色微光，否则那圈「玻璃边」会变成黑边 */
+    --glass-hi: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+
+    --fg: #f4efe4;
+    --fg-soft: #ddd5c6;
+    --muted: #a09884;
+    --border: rgba(255, 255, 255, 0.11);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.35);
+    --shadow: 0 22px 46px -30px rgba(0, 0, 0, 0.85);
+    --fab-shadow: 0 4px 12px rgba(0, 0, 0, 0.40);
+    --fab-shadow-hover: 0 6px 16px rgba(0, 0, 0, 0.55);
+
+    /* 亮色下这几个强调色在深底上对比不足，整体提亮一档 */
+    --accent: #4d97ff;
+    --accent-alt: #a98bff;
+    --zhiku: #5aa9f5;
+    --yunying: #f0a94b;
+    --xiaoer: #45ce8a;
+    --shuju: #3fc4bd;
+    --hetong: #b47cff;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -73,7 +120,7 @@
   /* ---------- 顶部栏（磨砂） ---------- */
   header {
     position: fixed; top: 0; left: 0; right: 0;
-    background: rgba(252, 250, 246, 0.72);
+    background: rgba(var(--header-rgb), 0.72);
     backdrop-filter: blur(18px) saturate(150%);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
     border-bottom: 1px solid var(--border);
@@ -166,11 +213,11 @@
        弹层窄于此值时 .txt 会被 flex 压到 170px 以下从而截断 */
     width: 336px; padding: 14px;
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(var(--panel-rgb), 0.88);
     border: 1px solid var(--border);
     backdrop-filter: blur(18px) saturate(150%);
     -webkit-backdrop-filter: blur(18px) saturate(150%);
-    box-shadow: var(--glass-hi), 0 24px 48px -26px rgba(72, 58, 38, 0.55);
+    box-shadow: var(--glass-hi), 0 24px 48px -26px rgba(var(--deep-rgb), 0.55);
     opacity: 0; visibility: hidden; transform: translateY(-6px);
     transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
     z-index: 20;
@@ -181,7 +228,7 @@
   .ct-pop::before {
     content: ""; position: absolute; top: -7px; right: 24px;
     width: 12px; height: 12px; transform: rotate(45deg);
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(var(--panel-rgb), 0.88);
     border-left: 1px solid var(--border); border-top: 1px solid var(--border);
     border-radius: 2px 0 0 0;
   }
@@ -200,7 +247,7 @@
     transition: all 0.18s ease;
   }
   .ct-row + .ct-row { margin-top: 7px; }
-  .ct-row:hover { border-color: color-mix(in srgb, var(--accent) 30%, transparent); background: #fff; }
+  .ct-row:hover { border-color: color-mix(in srgb, var(--accent) 30%, transparent); background: var(--panel-solid); }
   .ct-row .ct-link {
     display: flex; align-items: center; gap: 10px;
     flex: 1; min-width: 0;
@@ -240,7 +287,7 @@
     padding: 10px;
     border: 1px solid var(--border);
     border-radius: 16px;
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(var(--panel-rgb), 0.72);
     backdrop-filter: blur(16px) saturate(140%);
     -webkit-backdrop-filter: blur(16px) saturate(140%);
     box-shadow: var(--glass-hi), var(--shadow);
@@ -264,7 +311,7 @@
   .side-nav a:hover { color: var(--fg); background: var(--surface-2); }
   .side-nav a.active {
     color: var(--fg); font-weight: 700;
-    background: rgba(255, 255, 255, 0.86);
+    background: rgba(var(--panel-rgb), 0.86);
     box-shadow: var(--glass-hi), var(--shadow-sm);
   }
 
@@ -324,7 +371,7 @@
     font-size: 12px;
     line-height: 1.5;
     color: var(--muted);
-    border: 0.5px solid rgba(46, 38, 26, 0.16);
+    border: 0.5px solid rgba(var(--ink-rgb), 0.16);
     border-radius: 999px;
     padding: 4px 12px;
   }
@@ -412,7 +459,7 @@
   }
   button.entry:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(var(--panel-rgb), 0.82);
     border-color: color-mix(in srgb, var(--accent) 42%, transparent);
     box-shadow: var(--glass-hi), var(--shadow);
   }
@@ -423,7 +470,7 @@
   }
   a.entry:hover {
     transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(var(--panel-rgb), 0.82);
     border-color: color-mix(in srgb, var(--accent) 42%, transparent);
     box-shadow: var(--glass-hi), var(--shadow);
   }
@@ -478,14 +525,14 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 18px;
-    box-shadow: 0 40px 90px -42px rgba(46, 38, 26, 0.62);
+    box-shadow: 0 40px 90px -42px rgba(var(--ink-rgb), 0.62);
     overflow: hidden;
   }
   .lightbox-head {
     display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
     padding: 17px 20px;
     border-bottom: 1px solid var(--border);
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(var(--panel-rgb), 0.72);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
   }
@@ -496,14 +543,14 @@
     display: inline-flex; align-items: center; justify-content: center;
     font-size: 21px; line-height: 1; color: var(--muted);
     border: 1px solid var(--border); border-radius: 10px;
-    background: rgba(255, 255, 255, 0.82);
+    background: rgba(var(--panel-rgb), 0.82);
     cursor: pointer;
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
   .lightbox-x:hover {
     color: var(--fg);
     border-color: color-mix(in srgb, var(--accent) 42%, transparent);
-    background: #fff;
+    background: var(--panel-solid);
   }
   .lightbox-body { overflow-y: auto; padding: 22px 20px 26px; }
   .lightbox-body .shots { gap: 28px; }
@@ -570,7 +617,7 @@
     flex-shrink: 0; white-space: nowrap;
     font-family: Consolas, ui-monospace, monospace;
     font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
-    color: #fff; background: var(--fg);
+    color: var(--bg); background: var(--fg);
     padding: 8px 15px; border-radius: 9px;
   }
   .pf-core-t b { display: block; font-size: 18px; font-weight: 800; letter-spacing: -0.01em; }
@@ -594,7 +641,7 @@
   }
   .pf-card:hover {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(var(--panel-rgb), 0.78);
     border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     box-shadow: var(--glass-hi), var(--shadow);
   }
@@ -620,7 +667,7 @@
   .pf-base-chips span {
     font-family: Consolas, ui-monospace, monospace;
     font-size: 11.5px; color: var(--muted);
-    background: rgba(255, 255, 255, 0.72);
+    background: rgba(var(--panel-rgb), 0.72);
     border: 1px solid var(--border);
     padding: 3px 10px; border-radius: 999px;
   }
@@ -639,47 +686,94 @@
   }
   .service:hover {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.78);
+    background: rgba(var(--panel-rgb), 0.78);
     border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     box-shadow: var(--glass-hi), var(--shadow);
   }
   .service h3 { font-size: 19px; font-weight: 700; margin-bottom: 10px; }
   .service p { font-size: 14.5px; color: var(--muted); line-height: 1.72; }
 
-  /* ---------- 回到顶部（右下角圆形按钮） ---------- */
-  .to-top {
+  /* ---------- 右下角悬浮按钮组（返回顶部 / 主题切换） ----------
+     样式取自 back-to-top-buttons.html：48px 圆角卡片、悬停上浮 2px、
+     左侧弹出 tooltip。颜色全部换回站内变量，跟着明暗主题一起变。 */
+  .floating-controls {
     position: fixed;
-    right: clamp(16px, 2.2vw, 30px);
-    bottom: clamp(18px, 2.6vw, 34px);
-    width: 46px; height: 46px;
-    display: inline-flex; align-items: center; justify-content: center;
+    right: clamp(16px, 2.2vw, 32px);
+    bottom: clamp(16px, 2.4vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    z-index: 95;
+  }
+  .floating-btn {
+    position: relative;
+    width: 48px; height: 48px;
+    display: flex; align-items: center; justify-content: center;
     padding: 0;
     border: 1px solid var(--border);
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.72);
+    border-radius: 12px;
+    background: var(--surface);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
-    box-shadow: var(--glass-hi), var(--shadow-sm);
-    color: var(--muted);
+    color: var(--fg);
     cursor: pointer;
-    z-index: 95;
-    opacity: 0;
-    transform: translateY(10px) scale(0.94);
-    pointer-events: none;
-    transition: opacity 0.26s ease, transform 0.26s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: var(--fab-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
-  .to-top svg {
-    width: 19px; height: 19px;
-    fill: none; stroke: currentColor; stroke-width: 1.9;
+  .floating-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--fab-shadow-hover);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+  .floating-btn:active { transform: translateY(0); }
+  .floating-btn svg {
+    width: 22px; height: 22px;
+    fill: none; stroke: currentColor; stroke-width: 2;
     stroke-linecap: round; stroke-linejoin: round;
   }
-  .to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
-  .to-top:hover {
-    color: var(--accent);
-    border-color: rgba(11, 107, 242, 0.42);
-    box-shadow: var(--glass-hi), var(--shadow);
+  /* 返回顶部：滚过 300px 才淡入 */
+  #backToTop {
+    opacity: 0; visibility: hidden;
+    transform: translateY(10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease,
+                box-shadow 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   }
-  .to-top:active { transform: translateY(1px) scale(0.96); }
+  #backToTop.visible {
+    opacity: 1; visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  /* 上面两条 #id 规则会压住 .floating-btn:hover 的上浮，单独补一条 */
+  #backToTop.visible:hover { transform: translateY(-2px); }
+  /* 主题切换：常驻可见 */
+  #themeToggle { opacity: 1; visibility: visible; }
+
+  /* 悬停提示：按钮左侧弹出的小标签 */
+  .floating-btn::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    right: calc(100% + 12px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-6px);
+    background: var(--fg);
+    color: var(--bg);
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    font-family: Consolas, ui-monospace, monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    white-space: nowrap;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+  .floating-btn:hover::after,
+  .floating-btn:focus-visible::after {
+    opacity: 1; visibility: visible;
+    transform: translateY(-50%) translateX(0);
+  }
 
   /* ---------- 响应式 ---------- */
   /* 中窄屏：飘窗收成图标条，悬停展开 —— 避免压住居中的正文 */
@@ -715,7 +809,7 @@
       padding: 8px 16px;
       border: none; border-bottom: 1px solid var(--border);
       border-radius: 0;
-      background: rgba(252, 250, 246, 0.74);
+      background: rgba(var(--header-rgb), 0.74);
       backdrop-filter: blur(18px) saturate(150%);
       -webkit-backdrop-filter: blur(18px) saturate(150%);
       box-shadow: none;
@@ -885,7 +979,7 @@
   .site-footer {
     position: relative; z-index: 1;
     border-top: 1px solid var(--border);
-    background: rgba(252, 250, 246, 0.62);
+    background: rgba(var(--header-rgb), 0.62);
     backdrop-filter: var(--blur);
     -webkit-backdrop-filter: var(--blur);
     padding: clamp(48px, 7vh, 64px) 0 clamp(28px, 4vh, 36px);
@@ -972,7 +1066,7 @@
     transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
   }
   .footer-social a:hover {
-    background: rgba(255, 255, 255, 0.88);
+    background: rgba(var(--panel-rgb), 0.88);
     border-color: color-mix(in srgb, var(--accent) 30%, transparent);
     color: var(--accent);
     transform: translateY(-2px);
@@ -995,7 +1089,44 @@
     .footer-bottom { flex-direction: column; align-items: flex-start; }
     .footer-brand { max-width: none; }
   }
+  /* ============================================================
+     深色主题的细节修正
+     下面几处是变量管不到的地方：噪点纹理、环境光晕、首屏光斑。
+     同一套参数放到深底上会糊成一片脏光，所以单独压一档。
+     ============================================================ */
+  :root[data-theme="dark"] body {
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23g)' opacity='0.035'/%3E%3C/svg%3E");
+  }
+  :root[data-theme="dark"] body::before {
+    background:
+      radial-gradient(46% 38% at 12% 2%, rgba(70, 130, 255, 0.16), transparent 70%),
+      radial-gradient(42% 34% at 88% 6%, rgba(140, 110, 255, 0.14), transparent 72%),
+      radial-gradient(52% 40% at 50% 100%, rgba(255, 160, 80, 0.10), transparent 74%);
+  }
+  :root[data-theme="dark"] .hero::before {
+    background: radial-gradient(58% 62% at 50% 0%, rgba(77, 151, 255, 0.16), rgba(169, 139, 255, 0.07) 45%, transparent 74%);
+  }
 </style>
+<script>
+  /* 主题：必须在首屏绘制前定好 data-theme，否则会先闪一下米白再跳成深色。
+     取值优先级：用户上次手动选的 > 系统偏好 > 浅色。
+     放在 <head> 里同步执行（不加 defer），保证样式计算前 html 上已有属性。 */
+  (function () {
+    var root = document.documentElement;
+    var theme = 'light';
+    try {
+      var saved = localStorage.getItem('nyh-theme');
+      if (saved === 'light' || saved === 'dark') {
+        theme = saved;
+      } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        theme = 'dark';
+      }
+    } catch (e) { /* 隐私模式禁用了 localStorage，退回浅色 */ }
+    root.setAttribute('data-theme', theme);
+    var meta = document.getElementById('metaThemeColor');
+    if (meta) meta.setAttribute('content', theme === 'dark' ? '#12100d' : '#fdfbf7');
+  })();
+</script>
 <script>
   /* 入场动效开关：赶在首屏绘制之前挂上标记，避免内容先闪一下再隐藏；
      系统开启「减少动效」时完全不介入，页面按静态展示 */
@@ -1804,9 +1935,16 @@
   </div>
 </div>
 
-<button class="to-top" id="toTop" type="button" aria-label="回到顶部" title="回到顶部">
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
-</button>
+<!-- 右下角悬浮按钮组：上＝返回顶部（滚动后出现），下＝主题切换（常驻） -->
+<div class="floating-controls">
+  <button id="backToTop" class="floating-btn" type="button" data-tooltip="返回顶部" aria-label="返回顶部">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+  </button>
+  <button id="themeToggle" class="floating-btn" type="button" data-tooltip="切换到深色模式" aria-label="切换到深色模式" aria-pressed="false">
+    <svg class="sun-icon" viewBox="0 0 24 24" aria-hidden="true" style="display: none;"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+    <svg class="moon-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+</div>
 
 <script>
   /* 导航高亮（只处理页内锚点，跳过 GitHub 等外链） */
@@ -1860,14 +1998,55 @@
     });
   });
 
-  /* 回到顶部：滚动超过一屏的 1/3 时淡入 */
-  const toTop = document.getElementById('toTop');
-  if (toTop) {
-    const toggle = () => toTop.classList.toggle('is-visible', window.scrollY > window.innerHeight / 3);
+  /* 主题切换：在明 / 暗之间切，选完记住；没手动选过时跟随系统 */
+  const themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    const root = document.documentElement;
+    const metaTheme = document.getElementById('metaThemeColor');
+    const sunIcon = themeToggle.querySelector('.sun-icon');
+    const moonIcon = themeToggle.querySelector('.moon-icon');
+    const syncBtn = () => {
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      /* 深色时给太阳（点它回浅色），浅色时给月亮 */
+      if (sunIcon) sunIcon.style.display = isDark ? 'block' : 'none';
+      if (moonIcon) moonIcon.style.display = isDark ? 'none' : 'block';
+      const tip = isDark ? '切换到浅色模式' : '切换到深色模式';
+      themeToggle.setAttribute('data-tooltip', tip);
+      themeToggle.setAttribute('aria-label', tip);
+      themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+      if (metaTheme) metaTheme.setAttribute('content', isDark ? '#12100d' : '#fdfbf7');
+    };
+    const apply = (t) => { root.setAttribute('data-theme', t); syncBtn(); };
+    syncBtn();
+
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      apply(next);
+      try { localStorage.setItem('nyh-theme', next); } catch (e) { /* 忽略 */ }
+    });
+
+    /* 没手动选过时，系统切换深浅色跟着变；手动选过就不再自动改 */
+    try {
+      const mq = window.matchMedia('(prefers-color-scheme: dark)');
+      const onSys = (e) => {
+        let saved = null;
+        try { saved = localStorage.getItem('nyh-theme'); } catch (err) { /* 忽略 */ }
+        if (saved === 'light' || saved === 'dark') return;
+        apply(e.matches ? 'dark' : 'light');
+      };
+      if (mq.addEventListener) mq.addEventListener('change', onSys);
+      else if (mq.addListener) mq.addListener(onSys);
+    } catch (e) { /* 忽略 */ }
+  }
+
+  /* 返回顶部：滚过 300px 淡入（阈值取自 back-to-top-buttons.html） */
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    const toggle = () => backToTop.classList.toggle('visible', window.scrollY > 300);
     toggle();
     window.addEventListener('scroll', toggle, { passive: true });
     window.addEventListener('resize', toggle);
-    toTop.addEventListener('click', () => {
+    backToTop.addEventListener('click', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
