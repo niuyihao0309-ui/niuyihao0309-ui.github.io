@@ -927,11 +927,11 @@
 
 <aside class="sidebar" data-od-id="projnav">
   <nav class="side-nav" id="nav" aria-label="项目导航">
-    <a href="#zhiku" title="知识库智能体"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.2"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg><span>知识库智能体</span></a>
     <a href="#yunying" title="智能运营助手"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.6"/><circle cx="18" cy="18" r="2.6"/><path d="M8.6 6H14a4 4 0 0 1 4 4v5.4"/></svg><span>智能运营助手</span></a>
     <a href="#xiaoer" title="智能客服问答"><svg viewBox="0 0 24 24"><path d="M20.5 14.5a2.5 2.5 0 0 1-2.5 2.5H8.5L4 21V6a2.5 2.5 0 0 1 2.5-2.5h11A2.5 2.5 0 0 1 20.5 6z"/></svg><span>智能客服问答</span></a>
-    <a href="#shuju" title="数据查询智能体"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><rect x="5" y="11" width="3.6" height="6.5" rx="1.2"/><rect x="10.2" y="6" width="3.6" height="11.5" rx="1.2"/><rect x="15.4" y="14" width="3.6" height="3.5" rx="1.2"/></svg><span>数据查询智能体</span></a>
     <a href="#hetong" title="智能合同审批"><svg viewBox="0 0 24 24"><path d="M13.5 3H7.5A2 2 0 0 0 5.5 5v14a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-9z"/><path d="M13.5 3v6h5"/><path d="m9.4 14.2 1.9 1.9 3.6-3.6"/></svg><span>智能合同审批</span></a>
+    <a href="#zhiku" title="知识库智能体"><svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2.2"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg><span>知识库智能体</span></a>
+    <a href="#shuju" title="数据查询智能体"><svg viewBox="0 0 24 24"><path d="M3.5 20.5h17"/><rect x="5" y="11" width="3.6" height="6.5" rx="1.2"/><rect x="10.2" y="6" width="3.6" height="11.5" rx="1.2"/><rect x="15.4" y="14" width="3.6" height="3.5" rx="1.2"/></svg><span>数据查询智能体</span></a>
   </nav>
 </aside>
 
@@ -994,11 +994,6 @@
       </div>
 
       <div class="pf-grid">
-        <a class="pf-card" href="#zhiku" style="--accent: var(--zhiku)">
-          <span class="pf-card-tag">知识库 / RAG</span>
-          <b>知识库智能体</b>
-          <p>企业文档入库，自然语言问答带出处。</p>
-        </a>
         <a class="pf-card" href="#yunying" style="--accent: var(--yunying)">
           <span class="pf-card-tag">多 Agent 平台</span>
           <b>智能运营助手</b>
@@ -1009,15 +1004,20 @@
           <b>智能客服问答</b>
           <p>查订单、物流、退款，一句话直达。</p>
         </a>
-        <a class="pf-card" href="#shuju" style="--accent: var(--shuju)">
-          <span class="pf-card-tag">NL2SQL 取数</span>
-          <b>数据查询智能体</b>
-          <p>中文问指标，直出结果表与图表。</p>
-        </a>
         <a class="pf-card" href="#hetong" style="--accent: var(--hetong)">
           <span class="pf-card-tag">智能审查</span>
           <b>智能合同审批</b>
           <p>条款可溯源，双引擎识别法律与商业风险。</p>
+        </a>
+        <a class="pf-card" href="#zhiku" style="--accent: var(--zhiku)">
+          <span class="pf-card-tag">知识库 / RAG</span>
+          <b>知识库智能体</b>
+          <p>企业文档入库，自然语言问答带出处。</p>
+        </a>
+        <a class="pf-card" href="#shuju" style="--accent: var(--shuju)">
+          <span class="pf-card-tag">NL2SQL 取数</span>
+          <b>数据查询智能体</b>
+          <p>中文问指标，直出结果表与图表。</p>
         </a>
       </div>
 
@@ -1038,73 +1038,12 @@
     </div>
   </section>
 
-  <!-- ① 华味坊麦浪智慧库 -->
-  <section id="zhiku" data-od-id="zhiku" style="--accent: var(--zhiku)">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>多智能体运营平台 · 知识库智能体</h2>
-        <span class="sec-note">#01</span>
-      </div>
-      <div class="proj-grid">
-        <aside class="proj-side">
-          <div class="side-label">知识库 / RAG</div>
-          <p class="side-desc">私有化知识库问答系统</p>
-          <div class="side-meta">
-            <div><span>独有技术栈</span><b>5 项</b></div>
-            <div><span>核心模块</span><b>5 个</b></div>
-            <div><span>架构亮点</span><b>3 条</b></div>
-          </div>
-          <button class="entry" type="button" data-gallery-open="gallery-zhiku">
-            <span class="entry-head">演示截图 · 问答对话<span class="entry-link entry-cta">查看 ›</span></span>
-            <span class="entry-desc">从文档批量入库到带出处的问答 —— 导入解析、向量入库、对话作答一屏看完。</span>
-          </button>
-                  <div class="side-ach">
-            <div><b>200+</b><span>份文档入库</span></div>
-            <div><b>80%+</b><span>问答准确率</span></div>
-            <div><b>百余名</b><span>业务与经销人员使用</span></div>
-          </div>
-        </aside>
-        <div class="proj-main">
-          <p class="lead">面向企业文档的<strong>私有化知识库问答系统</strong>：PDF / 图文资料批量入库，自然语言提问即可拿到带出处的答案，替代「翻文档 + 问老员工」的低效检索方式。</p>
-
-          <div class="block">
-            <h4>独有技术栈</h4>
-            <div class="chips">
-              <span class="chip key">Milvus 向量库</span><span class="chip key">MongoDB（会话历史）</span><span class="chip key">MinIO（原件存储）</span>
-              <span class="chip">Rerank 重排</span><span class="chip">MCP 联网搜索</span>
-            </div>
-          </div>
-
-          <div class="block">
-            <h4>核心模块</h4>
-            <div class="modules">
-              <div class="module"><b>文档导入流水线</b><span>PDF 转 Markdown → 图片识别 → 条目名识别 → 分块 → BGE 向量化 → 入 Milvus，6 节点 LangGraph 图。</span></div>
-              <div class="module"><b>智能问答流水线</b><span>条目确认 → 向量检索 / HyDE → MCP 联网搜索 → RRF 混合召回 → Rerank → 流式答案生成。</span></div>
-              <div class="module"><b>Web API 层</b><span>导入服务（8001）与查询服务（8003）分离，SSE 实时推送处理进度。</span></div>
-              <div class="module"><b>前端页面</b><span>import.html 导入页、chat.html 对话页、index.html 导航页，原生 HTML 轻量实现。</span></div>
-              <div class="module"><b>基础设施编排</b><span>start_all.bat 一键拉起 Docker 全套中间件，健康检查通过后启动双后端。</span></div>
-            </div>
-          </div>
-
-          <div class="block">
-            <h4>架构亮点</h4>
-            <div class="hl-list">
-              <div class="hl"><span class="icon">◆</span>双 LangGraph 状态图（文档导入 / 知识问答）：导入侧完成 PDF→Markdown 解析、图片抽取、切片与向量化入库；问答侧完成主体确认、多路召回、融合重排与生成，节点可插拔、可单独调试。</div>
-              <div class="hl"><span class="icon">◆</span>三路并行召回：BGE-M3 稠密 + 稀疏混合向量、HyDE 假设文档召回、MCP 联网搜索补充实时信息；RRF（k=60）加权融合 + Reranker 精排，明显改善长尾问题召回质量。</div>
-              <div class="hl"><span class="icon">◆</span>主体名确认前置节点：指向多个相似规格时反问收敛（如「P60 128G / P60 Art」），库中查无此主体直接拒答，避免模型脱离知识库臆造；存储按职责拆分 —— Milvus 存向量、MinIO 存原件、MongoDB 存会话历史。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ② 智能运营助手 -->
+  <!-- ① 智能运营助手 -->
   <section id="yunying" data-od-id="yunying" style="--accent: var(--yunying)">
     <div class="wrap">
       <div class="sec-head">
         <h2>智能运营助手</h2>
-        <span class="sec-note">#02</span>
+        <span class="sec-note">#01</span>
       </div>
       <div class="proj-grid">
         <aside class="proj-side">
@@ -1161,12 +1100,12 @@
     </div>
   </section>
 
-  <!-- ③ 智能客服问答 -->
+  <!-- ② 智能客服问答 -->
   <section id="xiaoer" data-od-id="xiaoer" style="--accent: var(--xiaoer)">
     <div class="wrap">
       <div class="sec-head">
         <h2>智能客服问答</h2>
-        <span class="sec-note">#03</span>
+        <span class="sec-note">#02</span>
       </div>
       <div class="proj-grid">
         <aside class="proj-side">
@@ -1223,12 +1162,135 @@
     </div>
   </section>
 
-  <!-- ④ 数据查询智能体 -->
+  <!-- ③ 智能合同审批 -->
+  <section id="hetong" data-od-id="hetong" style="--accent: var(--hetong)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>智能合同审批</h2>
+        <span class="sec-note">#03</span>
+      </div>
+      <div class="proj-grid">
+        <aside class="proj-side">
+          <div class="side-label">智能审查</div>
+          <p class="side-desc">合同审批智能审查系统</p>
+          <div class="side-meta">
+            <div><span>独有技术栈</span><b>6 项</b></div>
+            <div><span>核心模块</span><b>6 个</b></div>
+            <div><span>架构亮点</span><b>3 条</b></div>
+          </div>
+          <div class="entry" data-url="http://82.157.59.218:8080/">
+            <div class="entry-head">体验入口 · 审查台<span class="pill">待接入</span></div>
+            <p>丢一份合同进去，拿到风险清单与示范条款 —— 双引擎审查几分钟完成。</p>
+          </div>
+                  <div class="side-ach">
+            <div><b>十分钟</b><span>单份审查（原 1–2 小时）</span></div>
+            <div><b>90%+</b><span>高危条款召回</span></div>
+            <div><b>&lt;10%</b><span>标准合同误报率</span></div>
+          </div>
+        </aside>
+        <div class="proj-main">
+          <p class="lead">面向连锁零售品牌的<strong>合同审批智能审查</strong>：把采购 / 销售 / 门店租赁合同从 Word、PDF、扫描件解析为可溯源的结构化条款，用「规则引擎 + 大模型」双引擎识别法律与商业风险，输出修改示范条款并幂等回写审批意见。</p>
+
+          <div class="block">
+            <h4>独有技术栈</h4>
+            <div class="chips">
+              <span class="chip key">MySQL 8（asyncmy）</span><span class="chip key">python-docx / PyMuPDF</span><span class="chip key">RapidOCR（扫描件）</span>
+              <span class="chip">Element Plus</span><span class="chip">Pinia</span><span class="chip">Vite 5</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <h4>核心模块</h4>
+            <div class="modules">
+              <div class="module"><b>文档接入解析</b><span>DOCX / PDF / 扫描件 OCR 统一归一为可溯源的 blocks 中间表示。</span></div>
+              <div class="module"><b>智能合规审查</b><span>13 条规则引擎先行 + LLM 语义研判，输出风险等级与法律依据。</span></div>
+              <div class="module"><b>交互研判建议</b><span>原文与风险卡片双向高亮跳转、条款差异对比、示范条款生成。</span></div>
+              <div class="module"><b>审批集成回写</b><span>审查意见幂等回写审批系统评论区，支持导出 Markdown / PDF 报告。</span></div>
+              <div class="module"><b>规则模板管理</b><span>审查规则树 + 标准条款库，JSON 配置启动时自动同步。</span></div>
+              <div class="module"><b>登录与权限</b><span>三角色 21 权限点，前后端执行同一份权限矩阵。</span></div>
+            </div>
+          </div>
+
+          <div class="block">
+            <h4>架构亮点</h4>
+            <div class="hl-list">
+              <div class="hl"><span class="icon">◆</span>DOCX / PDF / 扫描件三路解析管线归一为 blocks 中间表示（block_id + 字符区间），风险项与批注只引用地址不存裸文本，保证前端高亮与原文永远对得上。</div>
+              <div class="hl"><span class="icon">◆</span>规则先行、大模型只补语义：13 条规则管确定性判定，大模型只研判高危表述并强制 Pydantic 结构化输出，标准合同不误报。</div>
+              <div class="hl"><span class="icon">◆</span>工作台原文与风险卡片双向高亮跳转、条款级差异对比、示范条款一键复制；意见经幂等键回写审批评论区；三角色 21 权限点，前后端共用同一份权限矩阵并由测试钉住一致性。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ④ 华味坊麦浪智慧库 -->
+  <section id="zhiku" data-od-id="zhiku" style="--accent: var(--zhiku)">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>多智能体运营平台 · 知识库智能体</h2>
+        <span class="sec-note">#04</span>
+      </div>
+      <div class="proj-grid">
+        <aside class="proj-side">
+          <div class="side-label">知识库 / RAG</div>
+          <p class="side-desc">私有化知识库问答系统</p>
+          <div class="side-meta">
+            <div><span>独有技术栈</span><b>5 项</b></div>
+            <div><span>核心模块</span><b>5 个</b></div>
+            <div><span>架构亮点</span><b>3 条</b></div>
+          </div>
+          <button class="entry" type="button" data-gallery-open="gallery-zhiku">
+            <span class="entry-head">演示截图 · 问答对话<span class="entry-link entry-cta">查看 ›</span></span>
+            <span class="entry-desc">从文档批量入库到带出处的问答 —— 导入解析、向量入库、对话作答一屏看完。</span>
+          </button>
+                  <div class="side-ach">
+            <div><b>200+</b><span>份文档入库</span></div>
+            <div><b>80%+</b><span>问答准确率</span></div>
+            <div><b>百余名</b><span>业务与经销人员使用</span></div>
+          </div>
+        </aside>
+        <div class="proj-main">
+          <p class="lead">面向企业文档的<strong>私有化知识库问答系统</strong>：PDF / 图文资料批量入库，自然语言提问即可拿到带出处的答案，替代「翻文档 + 问老员工」的低效检索方式。</p>
+
+          <div class="block">
+            <h4>独有技术栈</h4>
+            <div class="chips">
+              <span class="chip key">Milvus 向量库</span><span class="chip key">MongoDB（会话历史）</span><span class="chip key">MinIO（原件存储）</span>
+              <span class="chip">Rerank 重排</span><span class="chip">MCP 联网搜索</span>
+            </div>
+          </div>
+
+          <div class="block">
+            <h4>核心模块</h4>
+            <div class="modules">
+              <div class="module"><b>文档导入流水线</b><span>PDF 转 Markdown → 图片识别 → 条目名识别 → 分块 → BGE 向量化 → 入 Milvus，6 节点 LangGraph 图。</span></div>
+              <div class="module"><b>智能问答流水线</b><span>条目确认 → 向量检索 / HyDE → MCP 联网搜索 → RRF 混合召回 → Rerank → 流式答案生成。</span></div>
+              <div class="module"><b>Web API 层</b><span>导入服务（8001）与查询服务（8003）分离，SSE 实时推送处理进度。</span></div>
+              <div class="module"><b>前端页面</b><span>import.html 导入页、chat.html 对话页、index.html 导航页，原生 HTML 轻量实现。</span></div>
+              <div class="module"><b>基础设施编排</b><span>start_all.bat 一键拉起 Docker 全套中间件，健康检查通过后启动双后端。</span></div>
+            </div>
+          </div>
+
+          <div class="block">
+            <h4>架构亮点</h4>
+            <div class="hl-list">
+              <div class="hl"><span class="icon">◆</span>双 LangGraph 状态图（文档导入 / 知识问答）：导入侧完成 PDF→Markdown 解析、图片抽取、切片与向量化入库；问答侧完成主体确认、多路召回、融合重排与生成，节点可插拔、可单独调试。</div>
+              <div class="hl"><span class="icon">◆</span>三路并行召回：BGE-M3 稠密 + 稀疏混合向量、HyDE 假设文档召回、MCP 联网搜索补充实时信息；RRF（k=60）加权融合 + Reranker 精排，明显改善长尾问题召回质量。</div>
+              <div class="hl"><span class="icon">◆</span>主体名确认前置节点：指向多个相似规格时反问收敛（如「P60 128G / P60 Art」），库中查无此主体直接拒答，避免模型脱离知识库臆造；存储按职责拆分 —— Milvus 存向量、MinIO 存原件、MongoDB 存会话历史。</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑤ 数据查询智能体 -->
   <section id="shuju" data-od-id="shuju" style="--accent: var(--shuju)">
     <div class="wrap">
       <div class="sec-head">
         <h2>数据查询智能体</h2>
-        <span class="sec-note">#04</span>
+        <span class="sec-note">#05</span>
       </div>
       <div class="proj-grid">
         <aside class="proj-side">
@@ -1279,68 +1341,6 @@
               <div class="hl"><span class="icon">◆</span>召回后再用大模型过滤表与列，只把与问题相关的表和字段喂给生成节点，压住无关 Schema 的干扰；同时把当前时间（日期 / 星期 / 季度）与数据库方言一并注入提示词，让「上个月」「本季度」这类相对时间与函数写法有据可依。</div>
               <div class="hl"><span class="icon">◆</span>生成 — 校验 — 自修复闭环：生成的单条只读 SQL 先用 EXPLAIN 预检，通过则执行；报错则把异常信息连同 Schema 上下文回灌大模型重写后再执行，避免因字段名或语法小错直接失败；提示词层约束只出查询语句、禁止写操作与多语句拼接。</div>
               <div class="hl"><span class="icon">◆</span>结果即报表：执行结果按列特征自动推断图表类型 —— 时间维度出折线看趋势、问占比出饼图、其余出柱状比大小；配合 SSE 逐步推送「提取关键字 → 召回 → 过滤 → 生成 SQL → 校验 → 执行」的进度，取数过程对使用方透明可见。</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ⑤ 智能合同审批 -->
-  <section id="hetong" data-od-id="hetong" style="--accent: var(--hetong)">
-    <div class="wrap">
-      <div class="sec-head">
-        <h2>智能合同审批</h2>
-        <span class="sec-note">#05</span>
-      </div>
-      <div class="proj-grid">
-        <aside class="proj-side">
-          <div class="side-label">智能审查</div>
-          <p class="side-desc">合同审批智能审查系统</p>
-          <div class="side-meta">
-            <div><span>独有技术栈</span><b>6 项</b></div>
-            <div><span>核心模块</span><b>6 个</b></div>
-            <div><span>架构亮点</span><b>3 条</b></div>
-          </div>
-          <div class="entry" data-url="http://82.157.59.218:8080/">
-            <div class="entry-head">体验入口 · 审查台<span class="pill">待接入</span></div>
-            <p>丢一份合同进去，拿到风险清单与示范条款 —— 双引擎审查几分钟完成。</p>
-          </div>
-                  <div class="side-ach">
-            <div><b>十分钟</b><span>单份审查（原 1–2 小时）</span></div>
-            <div><b>90%+</b><span>高危条款召回</span></div>
-            <div><b>&lt;10%</b><span>标准合同误报率</span></div>
-          </div>
-        </aside>
-        <div class="proj-main">
-          <p class="lead">面向连锁零售品牌的<strong>合同审批智能审查</strong>：把采购 / 销售 / 门店租赁合同从 Word、PDF、扫描件解析为可溯源的结构化条款，用「规则引擎 + 大模型」双引擎识别法律与商业风险，输出修改示范条款并幂等回写审批意见。</p>
-
-          <div class="block">
-            <h4>独有技术栈</h4>
-            <div class="chips">
-              <span class="chip key">MySQL 8（asyncmy）</span><span class="chip key">python-docx / PyMuPDF</span><span class="chip key">RapidOCR（扫描件）</span>
-              <span class="chip">Element Plus</span><span class="chip">Pinia</span><span class="chip">Vite 5</span>
-            </div>
-          </div>
-
-          <div class="block">
-            <h4>核心模块</h4>
-            <div class="modules">
-              <div class="module"><b>文档接入解析</b><span>DOCX / PDF / 扫描件 OCR 统一归一为可溯源的 blocks 中间表示。</span></div>
-              <div class="module"><b>智能合规审查</b><span>13 条规则引擎先行 + LLM 语义研判，输出风险等级与法律依据。</span></div>
-              <div class="module"><b>交互研判建议</b><span>原文与风险卡片双向高亮跳转、条款差异对比、示范条款生成。</span></div>
-              <div class="module"><b>审批集成回写</b><span>审查意见幂等回写审批系统评论区，支持导出 Markdown / PDF 报告。</span></div>
-              <div class="module"><b>规则模板管理</b><span>审查规则树 + 标准条款库，JSON 配置启动时自动同步。</span></div>
-              <div class="module"><b>登录与权限</b><span>三角色 21 权限点，前后端执行同一份权限矩阵。</span></div>
-            </div>
-          </div>
-
-          <div class="block">
-            <h4>架构亮点</h4>
-            <div class="hl-list">
-              <div class="hl"><span class="icon">◆</span>DOCX / PDF / 扫描件三路解析管线归一为 blocks 中间表示（block_id + 字符区间），风险项与批注只引用地址不存裸文本，保证前端高亮与原文永远对得上。</div>
-              <div class="hl"><span class="icon">◆</span>规则先行、大模型只补语义：13 条规则管确定性判定，大模型只研判高危表述并强制 Pydantic 结构化输出，标准合同不误报。</div>
-              <div class="hl"><span class="icon">◆</span>工作台原文与风险卡片双向高亮跳转、条款级差异对比、示范条款一键复制；意见经幂等键回写审批评论区；三角色 21 权限点，前后端共用同一份权限矩阵并由测试钉住一致性。</div>
             </div>
           </div>
         </div>
