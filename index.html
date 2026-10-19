@@ -877,6 +877,124 @@
     opacity: 0; transition: opacity .3s ease;
   }
   .flow-bar.is-on { opacity: 1; }
+  /* ============================================================
+     页脚（Footer）
+     位置：main 之后、页面最底部；四列信息 + 底部版权栏。
+     颜色全部走站内变量，换主题时自动跟随。
+     ============================================================ */
+  .site-footer {
+    position: relative; z-index: 1;
+    border-top: 1px solid var(--border);
+    background: rgba(252, 250, 246, 0.62);
+    backdrop-filter: var(--blur);
+    -webkit-backdrop-filter: var(--blur);
+    padding: clamp(48px, 7vh, 64px) 0 clamp(28px, 4vh, 36px);
+  }
+  .footer-wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--pad);
+    padding-right: var(--pad);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: clamp(32px, 5vw, 64px);
+    margin-bottom: 40px;
+  }
+  .footer-col h4 {
+    font-size: 14px; font-weight: 700; color: var(--fg);
+    margin-bottom: 16px; letter-spacing: 0.02em;
+  }
+  .footer-brand { max-width: 300px; }
+  .footer-brand .brand-name {
+    font-size: 21px; font-weight: 900; margin-bottom: 12px;
+    display: inline-flex; align-items: center; gap: 10px;
+  }
+  .footer-brand .brand-name::before {
+    content: "";
+    width: 5px; height: 21px; border-radius: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-alt));
+  }
+  .footer-brand p {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.8; margin-bottom: 16px;
+  }
+  .footer-contact .contact-row {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 12px; font-size: 14px; color: var(--muted);
+  }
+  .footer-contact .contact-row .ic {
+    width: 20px; height: 20px; flex-shrink: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    color: var(--accent);
+  }
+  .footer-contact .contact-row .ic svg {
+    width: 16px; height: 16px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+  .footer-contact .contact-row a {
+    color: var(--muted); transition: color 0.18s ease;
+  }
+  .footer-contact .contact-row a:hover { color: var(--accent); }
+
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a {
+    font-size: 14px; color: var(--muted);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.18s ease;
+  }
+  .footer-links a:hover { color: var(--accent); }
+  .footer-links a .arr {
+    font-size: 11px; opacity: 0; transform: translateX(-4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .footer-links a:hover .arr { opacity: 1; transform: translateX(0); }
+  /* 技术栈不是链接，做成静音文本，避免一堆 href="#" 点了跳顶 */
+  .footer-links .tag { font-size: 14px; color: var(--muted); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid var(--border);
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-copyright { font-size: 13px; color: var(--muted); }
+  .footer-social { display: flex; align-items: center; gap: 12px; }
+  .footer-social a {
+    width: 36px; height: 36px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+  }
+  .footer-social a:hover {
+    background: rgba(255, 255, 255, 0.88);
+    border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+  .footer-social a svg {
+    width: 16px; height: 16px;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+  }
+
+  /* 981~1150px：与正文一致，给左侧飘窗留出内边距 */
+  @media (max-width: 1150px) and (min-width: 981px) {
+    .footer-wrap { padding-left: 96px; }
+  }
+  @media (max-width: 900px) {
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 640px) {
+    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-brand { max-width: none; }
+  }
 </style>
 <script>
   /* 入场动效开关：赶在首屏绘制之前挂上标记，避免内容先闪一下再隐藏；
@@ -1373,6 +1491,88 @@
   </section>
 
 </main>
+
+<!-- ============================================================
+     页脚：滚到底的落点 = 品牌 + 项目 / 技术栈 / 更多 + 版权栏
+     ============================================================ -->
+<footer class="site-footer" data-od-id="footer">
+  <div class="footer-wrap">
+    <div class="footer-grid">
+
+      <!-- 品牌介绍 -->
+      <div class="footer-col footer-brand">
+        <h4 class="brand-name">牛依豪</h4>
+        <p>专注于 AI 应用开发与智能体落地，将大模型能力融入真实业务流程。</p>
+        <div class="footer-contact">
+          <div class="contact-row">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>
+            </span>
+            <a href="mailto:niuyihao0309@gmail.com">niuyihao0309@gmail.com</a>
+          </div>
+          <div class="contact-row">
+            <span class="ic">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.2l1.6 4-2 1.3a11.5 11.5 0 0 0 5.3 5.3l1.3-2 4 1.6v2.2a2.1 2.1 0 0 1-2.3 2.1C11.4 17.4 6.6 12.6 4.5 5.8A2.1 2.1 0 0 1 6.6 3.5z"/></svg>
+            </span>
+            <a href="tel:15239109022">152 3910 9022</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 项目链接 -->
+      <div class="footer-col">
+        <h4>项目</h4>
+        <ul class="footer-links">
+          <li><a href="#yunying">智能运营助手 <i class="arr">↗</i></a></li>
+          <li><a href="#xiaoer">智能客服问答 <i class="arr">↗</i></a></li>
+          <li><a href="#hetong">智能合同审批 <i class="arr">↗</i></a></li>
+          <li><a href="#zhiku">知识库智能体 <i class="arr">↗</i></a></li>
+          <li><a href="#shuju">数据查询智能体 <i class="arr">↗</i></a></li>
+        </ul>
+      </div>
+
+      <!-- 技术栈 -->
+      <div class="footer-col">
+        <h4>技术栈</h4>
+        <ul class="footer-links">
+          <li><span class="tag">LangGraph / LangChain</span></li>
+          <li><span class="tag">FastAPI / Next.js</span></li>
+          <li><span class="tag">RAG / NL2SQL</span></li>
+          <li><span class="tag">Milvus / Qdrant</span></li>
+          <li><span class="tag">Docker / vLLM</span></li>
+        </ul>
+      </div>
+
+      <!-- 更多 -->
+      <div class="footer-col">
+        <h4>更多</h4>
+        <ul class="footer-links">
+          <li><a href="#top">关于我</a></li>
+          <li><a href="#services">我能做什么</a></li>
+          <li><a href="#platform">平台架构</a></li>
+          <li><a href="https://github.com/niuyihao0309-ui" target="_blank" rel="noopener">GitHub <i class="arr">↗</i></a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- 底部栏 -->
+    <div class="footer-bottom">
+      <div class="footer-copyright">© 2026 牛依豪 · 保留所有权利</div>
+      <div class="footer-social">
+        <a href="https://github.com/niuyihao0309-ui" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>
+        </a>
+        <a href="mailto:niuyihao0309@gmail.com" aria-label="邮箱" title="邮箱">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 6.5 9 6.5 9-6.5"/></svg>
+        </a>
+        <a href="tel:15239109022" aria-label="电话" title="电话">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5h2.2l1.6 4-2 1.3a11.5 11.5 0 0 0 5.3 5.3l1.3-2 4 1.6v2.2a2.1 2.1 0 0 1-2.3 2.1C11.4 17.4 6.6 12.6 4.5 5.8A2.1 2.1 0 0 1 6.6 3.5z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <!-- 演示截图浮层（默认隐藏，点「查看」才出现） -->
 <div class="lightbox" id="gallery-nl2sql" role="dialog" aria-modal="true" aria-label="取数对话演示截图" hidden>
