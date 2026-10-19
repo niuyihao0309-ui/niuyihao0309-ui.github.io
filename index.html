@@ -1066,10 +1066,10 @@
             <div><span>架构亮点</span><b>3 条</b></div>
           </div>
           <!-- 在线体验入口：指向华为云部署的 ShopPilot 实例（匿名只读工作台） -->
-          <div class="entry" data-url="http://1.92.99.25/">
-            <div class="entry-head">体验入口 · 运营工作台<span class="pill">待接入</span></div>
-            <p>免登录直接体验云上实例：用演示数据跑通建店建档 → 商品池 → 投放实验 → 周期复盘。</p>
-          </div>
+          <a class="entry" href="http://1.92.99.25/" target="_blank" rel="noopener">
+            <span class="entry-head">体验入口 · 运营工作台<span class="entry-link entry-cta">在线体验 ›</span></span>
+            <span class="entry-desc">免登录直接体验云上实例：用演示数据跑通建店建档 → 商品池 → 投放实验 → 周期复盘。</span>
+          </a>
           <button class="entry" type="button" data-gallery-open="gallery-yunying">
             <span class="entry-head">演示截图 · 创意工作台<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">一键跑通「诊断 → 创意 → 质检 → 人工审核」的完整 Agent 流程，拿到 3~6 套主图方案。</span>
@@ -1194,10 +1194,10 @@
             <div><span>核心模块</span><b>6 个</b></div>
             <div><span>架构亮点</span><b>3 条</b></div>
           </div>
-          <div class="entry" data-url="http://82.157.59.218:8080/">
-            <div class="entry-head">体验入口 · 审查台<span class="pill">待接入</span></div>
-            <p>丢一份合同进去，拿到风险清单与示范条款 —— 双引擎审查几分钟完成。</p>
-          </div>
+          <a class="entry" href="http://82.157.59.218:8080/" target="_blank" rel="noopener">
+            <span class="entry-head">体验入口 · 审查台<span class="entry-link entry-cta">在线体验 ›</span></span>
+            <span class="entry-desc">丢一份合同进去，拿到风险清单与示范条款 —— 双引擎审查几分钟完成。</span>
+          </a>
                   <div class="side-ach">
             <div><b>十分钟</b><span>单份审查（原 1–2 小时）</span></div>
             <div><b>90%+</b><span>高危条款召回</span></div>
@@ -1536,17 +1536,17 @@
   }, { rootMargin: '-30% 0px -60% 0px' });
   targets.forEach(t => t && observer.observe(t));
 
-  /* 有真实地址的体验入口，渲染为外链 */
+  /* 有真实地址的体验入口，渲染为外链（文案与静态 a.entry 保持一致：在线体验 ›） */
   document.querySelectorAll('.entry').forEach(entry => {
     const url = entry.dataset.url;
     if (url) {
       const tag = entry.querySelector('.pill');
       const a = document.createElement('a');
-      a.className = 'entry-link';
+      a.className = 'entry-link entry-cta';
       a.href = url;
       a.target = '_blank';
       a.rel = 'noopener';
-      a.textContent = '详细展示 →';
+      a.textContent = '在线体验 ›';
       tag.replaceWith(a);
     }
   });
