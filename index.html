@@ -416,6 +416,17 @@
     border-color: color-mix(in srgb, var(--accent) 42%, transparent);
     box-shadow: var(--glass-hi), var(--shadow);
   }
+  /* 外链版体验入口（整块卡片可点，新标签打开） */
+  a.entry {
+    display: block; text-decoration: none; color: inherit;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+  a.entry:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.82);
+    border-color: color-mix(in srgb, var(--accent) 42%, transparent);
+    box-shadow: var(--glass-hi), var(--shadow);
+  }
   .entry-desc { display: block; font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.65; }
   /* 「查看」按钮：比外链版本略大一档，看得出是个按钮 */
   .entry-cta {
@@ -1121,10 +1132,10 @@
             <div><span>核心模块</span><b>6 个</b></div>
             <div><span>架构亮点</span><b>3 条</b></div>
           </div>
-          <div class="entry" data-url="http://82.157.59.218/">
-            <div class="entry-head">体验入口 · 客服窗口<span class="pill">待接入</span></div>
-            <p>一句话完成查订单、查物流、退款咨询 —— 体验懂业务、守边界的 AI 客服。</p>
-          </div>
+          <a class="entry" href="http://82.157.59.218/go" target="_blank" rel="noopener">
+            <span class="entry-head">体验入口 · 客服窗口<span class="entry-link entry-cta">在线体验 ›</span></span>
+            <span class="entry-desc">一句话完成查订单、查物流、退款咨询 —— 体验懂业务、守边界的 AI 客服，右侧带 3D 数字人应答。</span>
+          </a>
                   <div class="side-ach">
             <div><b>数百次</b><span>日均会话量</span></div>
             <div><b>七成</b><span>会话自助闭环</span></div>
