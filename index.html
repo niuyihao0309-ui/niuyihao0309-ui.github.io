@@ -398,6 +398,13 @@
     align-items: start;
   }
   .proj-side { position: sticky; top: 32px; }
+  /* 矮屏兜底：加入源码卡片后侧栏变高，视口不足 860 时改为内部滚动，避免 sticky 把底部内容顶出可视区 */
+  @media (min-width: 901px) and (max-height: 860px) {
+    .proj-side {
+      max-height: calc(100vh - 64px); overflow-y: auto;
+      scrollbar-width: thin; scrollbar-color: rgba(var(--ink-rgb), 0.18) transparent;
+    }
+  }
   .side-label { font-size: 15px; font-weight: 700; color: var(--accent); }
   .side-desc { font-size: 14px; color: var(--muted); margin-top: 8px; line-height: 1.7; }
   .side-meta { margin-top: 22px; border-top: 1px solid var(--border); }
@@ -483,6 +490,18 @@
     transition: background 0.2s ease;
   }
   button.entry:hover .entry-cta { background: color-mix(in srgb, var(--accent) 18%, transparent); }
+
+  /* 源码入口（第三条卡）：整块可点直连 GitHub，头部换 GitHub 图标，右侧 CTA 固定「源代码 →」 */
+  .entry-code .entry-head::before { content: none; }
+  .entry-gh {
+    width: 16px; height: 16px; flex: 0 0 auto;
+    fill: currentColor; color: var(--accent);
+  }
+  .entry-code .entry-cta {
+    display: inline-flex; align-items: center; gap: 3px;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  a.entry-code:hover .entry-cta { background: color-mix(in srgb, var(--accent) 18%, transparent); }
 
   /* ---------- 演示截图 ---------- */
   .shots { display: grid; grid-template-columns: 1fr; gap: 26px; }
@@ -1323,6 +1342,11 @@
             <span class="entry-head">演示截图 · 创意工作台<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">一键跑通「诊断 → 创意 → 质检 → 人工审核」的完整 Agent 流程，拿到 3~6 套主图方案。</span>
           </button>
+          <!-- 源码入口：整块卡片可点，新标签直达 GitHub 仓库 -->
+          <a class="entry entry-code" href="https://github.com/niuyihao0309-ui/ShopPilot" target="_blank" rel="noopener">
+            <span class="entry-head"><svg class="entry-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>GitHub 仓库<span class="entry-link entry-cta">源代码 →</span></span>
+            <span class="entry-desc">ShopPilot：FastAPI + Next.js 全栈源码，7 专家节点编排与幂等落库。</span>
+          </a>
                   <div class="side-ach">
             <div><b>3~6 套</b><span>一次生成主图方案</span></div>
             <div><b>十几分钟</b><span>出图（原数小时）</span></div>
@@ -1389,6 +1413,11 @@
             <span class="entry-head">演示截图 · 客服窗口<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">从开场问好到退款办理、异常兜底：数字人应答 + 业务对象面板联动，3 张截图看完整一轮对话。</span>
           </button>
+          <!-- 源码入口：整块卡片可点，新标签直达 GitHub 仓库 -->
+          <a class="entry entry-code" href="https://github.com/niuyihao0309-ui/ChatPilot" target="_blank" rel="noopener">
+            <span class="entry-head"><svg class="entry-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>GitHub 仓库<span class="entry-link entry-cta">源代码 →</span></span>
+            <span class="entry-desc">ChatPilot：对话引擎源码，意图理解 + YAML 流程编排 + 接口调用。</span>
+          </a>
                   <div class="side-ach">
             <div><b>数百次</b><span>日均会话量</span></div>
             <div><b>七成</b><span>会话自助闭环</span></div>
@@ -1455,6 +1484,11 @@
             <span class="entry-head">演示截图 · 审查台<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">批量上传 → 原文与风险双向高亮 → 三角色权限矩阵：3 张截图看完整审查链路。</span>
           </button>
+          <!-- 源码入口：整块卡片可点，新标签直达 GitHub 仓库 -->
+          <a class="entry entry-code" href="https://github.com/niuyihao0309-ui/contract-approve" target="_blank" rel="noopener">
+            <span class="entry-head"><svg class="entry-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>GitHub 仓库<span class="entry-link entry-cta">源代码 →</span></span>
+            <span class="entry-desc">contract-approve：规则引擎 + LLM 双引擎审查源码，含权限矩阵。</span>
+          </a>
                   <div class="side-ach">
             <div><b>十分钟</b><span>单份审查（原 1–2 小时）</span></div>
             <div><b>90%+</b><span>高危条款召回</span></div>
@@ -1517,6 +1551,11 @@
             <span class="entry-head">演示截图 · 问答对话<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">从文档批量入库到带出处的问答 —— 导入解析、向量入库、对话作答一屏看完。</span>
           </button>
+          <!-- 源码入口：整块卡片可点，新标签直达 GitHub 仓库 -->
+          <a class="entry entry-code" href="https://github.com/niuyihao0309-ui/knowledge_base" target="_blank" rel="noopener">
+            <span class="entry-head"><svg class="entry-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>GitHub 仓库<span class="entry-link entry-cta">源代码 →</span></span>
+            <span class="entry-desc">knowledge_base：双 LangGraph 流水线，入库 + 混合召回精排。</span>
+          </a>
                   <div class="side-ach">
             <div><b>200+</b><span>份文档入库</span></div>
             <div><b>80%+</b><span>问答准确率</span></div>
@@ -1578,6 +1617,11 @@
             <span class="entry-head">演示截图 · 取数对话<span class="entry-link entry-cta">查看 ›</span></span>
             <span class="entry-desc">中文问一句经营指标，直接拿到结果表与图表 —— 不用写 SQL 的取数方式。<br>从提问、流式取数到结果表与图表，一屏看完。</span>
           </button>
+          <!-- 源码入口：整块卡片可点，新标签直达 GitHub 仓库 -->
+          <a class="entry entry-code" href="https://github.com/niuyihao0309-ui/DataPilot" target="_blank" rel="noopener">
+            <span class="entry-head"><svg class="entry-gh" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.42 2.87 8.17 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.58 9.58 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4-.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.69.92.69 1.85v2.74c0 .27.18.58.69.48A10.01 10.01 0 0 0 22 12c0-5.52-4.48-10-10-10z"/></svg>GitHub 仓库<span class="entry-link entry-cta">源代码 →</span></span>
+            <span class="entry-desc">DataPilot：NL2SQL 源码，Schema 三路召回 + SQL 自修复闭环。</span>
+          </a>
                   <div class="side-ach">
             <div><b>分钟级</b><span>出数（原数个工作日）</span></div>
             <div><b>100+</b><span>每月省下工时</span></div>
