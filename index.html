@@ -362,46 +362,79 @@
     line-height: 1.85;
   }
   /* 首屏资质胶囊：贴在简介下方，靠细边框读作标签而非正文。
-     整枚胶囊是个按钮 —— 右侧带一个小箭头，点开证书浮层 */
+     整枚「胶囊 + 箭头」是个按钮 —— 箭头在胶囊外右侧，点开证书浮层 */
   .hero .hero-cert {
     margin-top: 16px;
     display: flex; justify-content: center;
   }
   .hero .hero-cert-btn {
-    display: inline-flex; align-items: center; gap: 6px;
+    display: inline-flex; align-items: center; gap: 8px;
     font: inherit;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+  }
+  .hero .cert-pill {
+    display: inline-block;
     font-size: 12px;
     line-height: 1.5;
     color: var(--muted);
-    background: transparent;
     border: 0.5px solid rgba(var(--ink-rgb), 0.16);
     border-radius: 999px;
     padding: 4px 12px;
-    cursor: pointer;
     transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
   }
-  .hero .hero-cert-btn > span { display: inline-block; }
-  .hero .hero-cert-btn:hover {
+  .hero .hero-cert-btn:hover .cert-pill {
     color: var(--fg-soft);
     border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     background: rgba(var(--panel-rgb), 0.72);
   }
   .hero .hero-cert-btn:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--accent) 62%, transparent);
-    outline-offset: 3px;
+    outline-offset: 4px;
+    border-radius: 999px;
   }
-  /* 小箭头：悬停 / 聚焦时向右滑一下并染成强调色，提示「这里能点」 */
+  /* 胶囊外的小箭头：品牌渐变（蓝 → 紫 → 暖橙），颜色沿箭头方向缓慢来回流动，
+     同时轻轻前后浮动 —— 一直动，不用等悬停也能看出这里能点 */
   .hero .cert-arrow {
     font-style: normal;
-    font-size: 12px;
+    font-weight: 700;
+    font-size: 16px;
     line-height: 1;
-    color: var(--muted);
-    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1), color 0.22s ease;
+    background-image: linear-gradient(100deg, var(--accent) 0%, var(--accent-alt) 42%, #ff7eb6 90%);
+    background-size: 120% 100%;
+    background-position: 0% 50%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: certArrowFlow 3.4s ease-in-out infinite alternate,
+               certArrowNudge 1.9s ease-in-out infinite;
   }
+  /* 悬停时颜色流得更快、浮动幅度更大一点，算个回应 */
   .hero .hero-cert-btn:hover .cert-arrow,
   .hero .hero-cert-btn:focus-visible .cert-arrow {
-    transform: translateX(3px);
-    color: var(--accent);
+    animation: certArrowFlow 1.5s ease-in-out infinite alternate,
+               certArrowNudgeHot 0.9s ease-in-out infinite;
+  }
+  /* 渐变横向游走：0% → 100% 来回，箭头颜色在蓝紫与橙之间过渡 */
+  @keyframes certArrowFlow {
+    from { background-position: 0% 50%; }
+    to   { background-position: 100% 50%; }
+  }
+  /* 常态轻浮动：0 → 4px → 0 */
+  @keyframes certArrowNudge {
+    0%, 100% { transform: translateX(0); }
+    50%      { transform: translateX(4px); }
+  }
+  /* 悬停时幅度更大、节奏更快 */
+  @keyframes certArrowNudgeHot {
+    0%, 100% { transform: translateX(1px); }
+    50%      { transform: translateX(6px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero .cert-arrow,
+    .hero .hero-cert-btn:hover .cert-arrow,
+    .hero .hero-cert-btn:focus-visible .cert-arrow { animation: none; }
   }
   .hero .stats {
     display: flex; justify-content: center;
@@ -1252,7 +1285,7 @@
       <p class="desc">把大模型能力做进真实业务流程 —— 从 RAG 知识库、多 Agent 运营工作流，到 NL2SQL 智能取数与合同智能审查，五条业务线共用一套 LangGraph + FastAPI 技术底座。</p>
       <div class="hero-cert">
         <button class="hero-cert-btn" type="button" data-gallery-open="gallery-cert" aria-haspopup="dialog" aria-label="查看影刀 RPA 高级认证证书">
-          <span>影刀 RPA 高级认证</span>
+          <span class="cert-pill">影刀 RPA 高级认证</span>
           <i class="cert-arrow" aria-hidden="true">→</i>
         </button>
       </div>
