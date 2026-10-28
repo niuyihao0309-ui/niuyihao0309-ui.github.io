@@ -361,19 +361,47 @@
     font-size: 15px;
     line-height: 1.85;
   }
-  /* 首屏资质胶囊：贴在简介下方，靠细边框读作标签而非正文 */
+  /* 首屏资质胶囊：贴在简介下方，靠细边框读作标签而非正文。
+     整枚胶囊是个按钮 —— 右侧带一个小箭头，点开证书浮层 */
   .hero .hero-cert {
     margin-top: 16px;
     display: flex; justify-content: center;
   }
-  .hero .hero-cert span {
-    display: inline-block;
+  .hero .hero-cert-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    font: inherit;
     font-size: 12px;
     line-height: 1.5;
     color: var(--muted);
+    background: transparent;
     border: 0.5px solid rgba(var(--ink-rgb), 0.16);
     border-radius: 999px;
     padding: 4px 12px;
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  }
+  .hero .hero-cert-btn > span { display: inline-block; }
+  .hero .hero-cert-btn:hover {
+    color: var(--fg-soft);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+    background: rgba(var(--panel-rgb), 0.72);
+  }
+  .hero .hero-cert-btn:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--accent) 62%, transparent);
+    outline-offset: 3px;
+  }
+  /* 小箭头：悬停 / 聚焦时向右滑一下并染成强调色，提示「这里能点」 */
+  .hero .cert-arrow {
+    font-style: normal;
+    font-size: 12px;
+    line-height: 1;
+    color: var(--muted);
+    transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.3, 1), color 0.22s ease;
+  }
+  .hero .hero-cert-btn:hover .cert-arrow,
+  .hero .hero-cert-btn:focus-visible .cert-arrow {
+    transform: translateX(3px);
+    color: var(--accent);
   }
   .hero .stats {
     display: flex; justify-content: center;
@@ -1222,7 +1250,12 @@
       <h1>牛依豪</h1>
       <p class="role">AI 应用开发 · 智能体应用开发 · FDE 前沿部署</p>
       <p class="desc">把大模型能力做进真实业务流程 —— 从 RAG 知识库、多 Agent 运营工作流，到 NL2SQL 智能取数与合同智能审查，五条业务线共用一套 LangGraph + FastAPI 技术底座。</p>
-      <div class="hero-cert"><span>影刀 RPA 高级认证</span></div>
+      <div class="hero-cert">
+        <button class="hero-cert-btn" type="button" data-gallery-open="gallery-cert" aria-haspopup="dialog" aria-label="查看影刀 RPA 高级认证证书">
+          <span>影刀 RPA 高级认证</span>
+          <i class="cert-arrow" aria-hidden="true">→</i>
+        </button>
+      </div>
       <div class="stats">
         <div class="stat"><div class="num">3</div><div class="label">年工作经验</div></div>
         <div class="stat"><div class="num">7</div><div class="label">个专家节点</div></div>
@@ -1748,6 +1781,30 @@
     </div>
   </div>
 </footer>
+
+<!-- 影刀 RPA 高级认证 · 证书浮层（点首屏胶囊右侧箭头打开） -->
+<div class="lightbox" id="gallery-cert" role="dialog" aria-modal="true" aria-label="影刀 RPA 高级认证证书" hidden>
+  <div class="lightbox-mask" data-lightbox-close></div>
+  <div class="lightbox-panel">
+    <div class="lightbox-head">
+      <div>
+        <b>影刀 RPA 高级认证</b>
+        <span>影刀学院 · 高级 RPA 技能证书 · 证书编号 YD2026087726451631 · 2026 年 8 月 14 日发放</span>
+      </div>
+      <button class="lightbox-x" type="button" data-lightbox-close aria-label="关闭">×</button>
+    </div>
+    <div class="lightbox-body">
+      <div class="shots">
+        <figure class="shot">
+          <a class="shot-frame" href="shots/cert-yingdao-rpa.jpg" target="_blank" rel="noopener">
+            <img src="shots/cert-yingdao-rpa.jpg" width="1311" height="834" loading="lazy" decoding="async"
+                 alt="影刀学院颁发给牛依豪的影刀高级 RPA 技能证书，含证书编号 YD2026087726451631 与签发印章">
+          </a>
+        </figure>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- 演示截图浮层（默认隐藏，点「查看」才出现） -->
 <div class="lightbox" id="gallery-nl2sql" role="dialog" aria-modal="true" aria-label="取数对话演示截图" hidden>
