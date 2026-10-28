@@ -376,20 +376,41 @@
     cursor: pointer;
   }
   .hero .cert-pill {
+    position: relative;
     display: inline-block;
     font-size: 12px;
     line-height: 1.5;
     color: var(--muted);
-    border: 0.5px solid rgba(var(--ink-rgb), 0.16);
+    border: 0;
     border-radius: 999px;
-    padding: 4px 12px;
-    transition: color 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    padding: 4.5px 12.5px;
+    background: transparent;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  /* 胶囊描边走品牌渐变：用 mask 挖空中间，只留 1px 边框，
+     圆角内侧能透出页面底色，不会糊成一块色板 */
+  .hero .cert-pill::before {
+    content: "";
+    position: absolute; inset: 0;
+    border-radius: 999px;
+    padding: 1px;
+    background-image: linear-gradient(100deg, var(--accent) 0%, var(--accent-alt) 42%, #ff7eb6 90%);
+    -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+    -webkit-mask-clip: content-box, border-box;
+    -webkit-mask-composite: xor;
+            mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
+            mask-clip: content-box, border-box;
+            mask-composite: exclude;
+    opacity: 0.88;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
   }
   .hero .hero-cert-btn:hover .cert-pill {
     color: var(--fg-soft);
-    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
     background: rgba(var(--panel-rgb), 0.72);
   }
+  .hero .hero-cert-btn:hover .cert-pill::before,
+  .hero .hero-cert-btn:focus-visible .cert-pill::before { opacity: 1; }
   .hero .hero-cert-btn:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--accent) 62%, transparent);
     outline-offset: 4px;
@@ -431,10 +452,29 @@
     0%, 100% { transform: translateX(1px); }
     50%      { transform: translateX(6px); }
   }
+  /* 箭头后面三个小圆点：颜色顺着箭头渐变往下走（紫 → 紫粉 → 粉），
+     明度依次变淡；只做缩放呼吸，位置不动，避免和上面的箭头抢戏 */
+  .hero .cert-dots {
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .hero .cert-dots i {
+    display: block;
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    animation: certDotPulse 2.4s ease-in-out infinite;
+  }
+  .hero .cert-dots i:nth-child(1) { background: var(--accent-alt); opacity: 0.95; }
+  .hero .cert-dots i:nth-child(2) { background: #b46cf0; opacity: 0.62; animation-delay: 0.3s; }
+  .hero .cert-dots i:nth-child(3) { background: #ff7eb6; opacity: 0.38; animation-delay: 0.6s; }
+  @keyframes certDotPulse {
+    0%, 100% { transform: scale(0.85); }
+    50%      { transform: scale(1.12); }
+  }
   @media (prefers-reduced-motion: reduce) {
     .hero .cert-arrow,
     .hero .hero-cert-btn:hover .cert-arrow,
-    .hero .hero-cert-btn:focus-visible .cert-arrow { animation: none; }
+    .hero .hero-cert-btn:focus-visible .cert-arrow,
+    .hero .cert-dots i { animation: none; }
   }
   .hero .stats {
     display: flex; justify-content: center;
@@ -1287,6 +1327,7 @@
         <button class="hero-cert-btn" type="button" data-gallery-open="gallery-cert" aria-haspopup="dialog" aria-label="查看影刀 RPA 高级认证证书">
           <span class="cert-pill">影刀 RPA 高级认证</span>
           <i class="cert-arrow" aria-hidden="true">→</i>
+          <span class="cert-dots" aria-hidden="true"><i></i><i></i><i></i></span>
         </button>
       </div>
       <div class="stats">
