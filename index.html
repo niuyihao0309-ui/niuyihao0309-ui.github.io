@@ -434,10 +434,11 @@
     0%, 100% { transform: translateX(1px); }
     50%      { transform: translateX(6px); }
   }
-  /* 箭头后面三个小圆点：颜色顺着箭头渐变往下走（紫 → 紫粉 → 粉），
-     明度依次变淡；只做缩放呼吸，位置不动，避免和上面的箭头抢戏 */
+  /* 箭头前面三个小圆点：越靠近箭头越实、越远越淡（淡粉 → 紫粉 → 紫），
+     正好把视线递到箭头上；只做缩放呼吸，位置不动，不跟箭头抢戏 */
   .hero .cert-dots {
     display: inline-flex; align-items: center; gap: 4px;
+    margin-right: -2px;
   }
   .hero .cert-dots i {
     display: block;
@@ -445,9 +446,9 @@
     border-radius: 50%;
     animation: certDotPulse 2.4s ease-in-out infinite;
   }
-  .hero .cert-dots i:nth-child(1) { background: var(--accent-alt); opacity: 0.95; }
-  .hero .cert-dots i:nth-child(2) { background: #b46cf0; opacity: 0.62; animation-delay: 0.3s; }
-  .hero .cert-dots i:nth-child(3) { background: #ff7eb6; opacity: 0.38; animation-delay: 0.6s; }
+  .hero .cert-dots i:nth-child(1) { background: #ff7eb6; opacity: 0.38; }
+  .hero .cert-dots i:nth-child(2) { background: #b46cf0; opacity: 0.62; animation-delay: 0.12s; }
+  .hero .cert-dots i:nth-child(3) { background: var(--accent-alt); opacity: 0.95; animation-delay: 0.24s; }
   @keyframes certDotPulse {
     0%, 100% { transform: scale(0.85); }
     50%      { transform: scale(1.12); }
@@ -1308,8 +1309,8 @@
       <div class="hero-cert">
         <button class="hero-cert-btn" type="button" data-gallery-open="gallery-cert" aria-haspopup="dialog" aria-label="查看影刀 RPA 高级认证证书">
           <span class="cert-pill">影刀 RPA 高级认证</span>
-          <i class="cert-arrow" aria-hidden="true">→</i>
           <span class="cert-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <i class="cert-arrow" aria-hidden="true">→</i>
         </button>
       </div>
       <div class="stats">
