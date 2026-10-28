@@ -375,42 +375,24 @@
     padding: 0;
     cursor: pointer;
   }
+  /* 胶囊里的字走品牌渐变（蓝 → 紫 → 粉），描边仍是原来那道细灰线，
+     避免整块太艳；渐变裁在文字上，padding 区域保持透明 */
   .hero .cert-pill {
-    position: relative;
     display: inline-block;
     font-size: 12px;
     line-height: 1.5;
-    color: var(--muted);
-    border: 0;
+    border: 0.5px solid rgba(var(--ink-rgb), 0.16);
     border-radius: 999px;
-    padding: 4.5px 12.5px;
-    background: transparent;
-    transition: color 0.2s ease, background 0.2s ease;
-  }
-  /* 胶囊描边走品牌渐变：用 mask 挖空中间，只留 1px 边框，
-     圆角内侧能透出页面底色，不会糊成一块色板 */
-  .hero .cert-pill::before {
-    content: "";
-    position: absolute; inset: 0;
-    border-radius: 999px;
-    padding: 1px;
-    background-image: linear-gradient(100deg, var(--accent) 0%, var(--accent-alt) 42%, #ff7eb6 90%);
-    -webkit-mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-    -webkit-mask-clip: content-box, border-box;
-    -webkit-mask-composite: xor;
-            mask-image: linear-gradient(#000 0 0), linear-gradient(#000 0 0);
-            mask-clip: content-box, border-box;
-            mask-composite: exclude;
-    opacity: 0.88;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
+    padding: 4px 12px;
+    background-image: linear-gradient(100deg, var(--accent) 0%, var(--accent-alt) 45%, #ff7eb6 95%);
+    background-size: 100% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: border-color 0.2s ease;
   }
   .hero .hero-cert-btn:hover .cert-pill {
-    color: var(--fg-soft);
-    background: rgba(var(--panel-rgb), 0.72);
+    border-color: color-mix(in srgb, var(--accent) 45%, transparent);
   }
-  .hero .hero-cert-btn:hover .cert-pill::before,
-  .hero .hero-cert-btn:focus-visible .cert-pill::before { opacity: 1; }
   .hero .hero-cert-btn:focus-visible {
     outline: 2px solid color-mix(in srgb, var(--accent) 62%, transparent);
     outline-offset: 4px;
